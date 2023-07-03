@@ -7,6 +7,11 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.keluaa.juliaintegration.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <fileType
+            name="Julia File"
+            implementationClass="com.github.keluaa.juliaintegration.JuliaFileType"
+            fieldName="INSTANCE"
+            language="Julia"
+            extensions="jl"/>
     </extensions>
 </idea-plugin>

@@ -8,7 +8,6 @@ end
 
 using JuliaSyntax
 import JuliaSyntax: Token, Kind, is_error
-import JuliaSyntax.Tokenize: Lexer
 
 
 const KindInt = Int16

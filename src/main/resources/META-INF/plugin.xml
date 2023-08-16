@@ -13,5 +13,9 @@
             fieldName="INSTANCE"
             language="Julia"
             extensions="jl"/>
+
+        <lang.parserDefinition
+            language="Julia"
+            implementationClass="com.github.keluaa.juliaintegration.parser.JuliaParserDefinition"/>
     </extensions>
 </idea-plugin>

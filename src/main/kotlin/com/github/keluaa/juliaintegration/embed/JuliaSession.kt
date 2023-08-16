@@ -3,7 +3,7 @@ package com.github.keluaa.juliaintegration.embed
 import com.github.keluaa.juinko.Julia
 import com.github.keluaa.juinko.impl.JuliaLoader
 
-class JuliaSession(path: String? = null) {
+class JuliaSession(path: String? = null) { // TODO: use
 
     private val INSTANCE: JuliaSession
 

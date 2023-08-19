@@ -1,7 +1,7 @@
 package com.github.keluaa.juliaintegration.lexer
 
-import com.github.keluaa.juinko.impl.JuliaLoader
 import com.github.keluaa.juliaintegration.JuliaLanguage
+import com.github.keluaa.juliaintegration.embed.JuliaSession
 import com.intellij.psi.tree.IElementType
 
 /**
@@ -9,12 +9,12 @@ import com.intellij.psi.tree.IElementType
  *
  * There exists a hard limit of ~15000 of [IElementType] that can be registered.
  * JuliaSyntax.jl defines ~1000 of token kinds: this plugin shouldn't take up 1/15 of all possible types!
- * Therefore, each some token kind categories are represented as a single [JuliaKind].
+ * Therefore, some token kind categories are represented as a single [JuliaKind].
  */
 class JuliaKind(kindRange: Pair<Short, Short>, val name: String): IElementType(name, JuliaLanguage) {
 
     companion object {
-        private val kindScript by lazy { KindScript.get(JuliaLoader.get()) }
+        private val kindScript by lazy { KindScript.get(JuliaSession.getJl()) }
 
         fun getKindFromName(name: String) = kindScript.kindFromName(name)
 

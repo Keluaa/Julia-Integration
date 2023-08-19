@@ -2,7 +2,6 @@ package com.github.keluaa.juliaintegration.embed
 
 import com.github.keluaa.juinko.GCStack
 import com.github.keluaa.juinko.Julia
-import com.github.keluaa.juinko.impl.JuliaLoader
 import com.github.keluaa.juinko.jl_module_t
 import com.github.keluaa.juinko.jl_value_t
 import com.jetbrains.rd.util.getOrCreate
@@ -13,6 +12,12 @@ import java.util.MissingResourceException
 import kotlin.reflect.KFunction
 import kotlin.reflect.jvm.isAccessible
 
+/**
+ * Wrapper around a Julia file stored in the resources. This file is evaluated once.
+ *
+ * Some additional variables are added into the Julia environment to allow to include other resource files from the
+ * script.
+ */
 open class JuliaScript(val jl: Julia, val module: jl_value_t) {
 
     companion object {
@@ -39,7 +44,7 @@ open class JuliaScript(val jl: Julia, val module: jl_value_t) {
             val contents = JuliaScript::class.java.getResource(path)?.readText()
                 ?: throw MissingResourceException("Missing Julia script resource: '$path'", "JuliaScript", path)
 
-            val jl = JuliaLoader.get()
+            val jl = JuliaSession.getJl()
 
             var scriptModule: jl_value_t? = null
             jl.runInJuliaThread {

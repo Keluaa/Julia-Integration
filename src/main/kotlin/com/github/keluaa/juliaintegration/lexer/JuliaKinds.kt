@@ -14,7 +14,9 @@ enum class JuliaKinds(name: String, isRange: Boolean = false, elType: IElementTy
     None("None"),
     EndMarker("EndMarker"),
     Comment("Comment"),
-    Whitespace("Whitespace", elType = TokenType.WHITE_SPACE),
+//    Whitespace("Whitespace", elType = TokenType.WHITE_SPACE), // TODO: fix this to use TokenType.WHITE_SPACE
+//    NewlineWs("NewlineWs", elType = TokenType.WHITE_SPACE),
+    Whitespace("Whitespace"),
     NewlineWs("NewlineWs"),
     Identifier("Identifier"),
     `@`("@"),
@@ -160,8 +162,11 @@ enum class JuliaKinds(name: String, isRange: Boolean = false, elType: IElementTy
     wrapper("wrapper");
 
     val kind = JuliaKind(name, isRange)
-    val elementType = elType
+    private val elementType = elType
 
+    /**
+     * Returns the [IElementType] associated with the enum value.
+     */
     operator fun invoke() = elementType ?: kind
 
     companion object {

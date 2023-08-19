@@ -20,3 +20,8 @@ end
     io_view = @inbounds StringView(@inbounds @view io.data[utf8_pos:utf8_end])
     return count_utf16_codepoints(io_view)
 end
+
+
+@inline function count_utf16_codepoints(text::String, utf8_pos::Int, utf8_end::Int)
+    return count_utf16_codepoints(view(text, utf8_pos:utf8_end))
+end

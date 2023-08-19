@@ -3,7 +3,7 @@
 # therefore our parsing is made easier
 
 a = 1 + 1
-b=1+1
+b=1+2+3
 
 c = a + b ; d = 45^42
 
